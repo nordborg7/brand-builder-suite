@@ -75,7 +75,7 @@ function ServicePage() {
         <div className="max-w-3xl mx-auto">
           <h2 className="text-2xl font-bold">What we remove</h2>
           <ul className="mt-6 space-y-3">
-            {data.bullets.map((b) => (
+            {data.bullets.map((b: string) => (
               <li key={b} className="flex gap-3 items-start text-foreground/90">
                 <CheckCircle2 className="h-5 w-5 text-gold mt-0.5 shrink-0" />
                 {b}
