@@ -8,8 +8,8 @@
  * Every page, header, footer, and meta tag reads from here.
  */
 export const brand = {
-  name: "RepBoost",
-  shortName: "RepBoost",
+  name: "ReputationLift",
+  shortName: "ReputationLift",
   tagline: "Reputation Protection",
   // Path inside /public, or any image URL. Replace /public/logo.svg to swap visuals.
   logoSrc: "/logo.svg",
