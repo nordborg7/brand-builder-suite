@@ -13,7 +13,7 @@ export const brand = {
   tagline: "Reputation Protection",
   // Path inside /public, or any image URL. Replace /public/logo.svg to swap visuals.
   logoSrc: "/logo.svg",
-  email: "hello@yourdomain.com",
+  email: "info@reputationlift.site",
   phone: "+1-347-480-8033",
   // Used in meta descriptions
   description:
