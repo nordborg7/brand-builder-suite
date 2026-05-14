@@ -88,8 +88,8 @@ function HomePage() {
               ))}
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/contact" className="inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-gold-foreground hover:opacity-90 transition shadow-[0_10px_40px_-10px_var(--gold)]">
-                Monthly Plans <ArrowRight className="h-4 w-4" />
+              <a href="#pricing" className="inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-gold-foreground hover:opacity-90 transition shadow-[0_10px_40px_-10px_var(--gold)]">
+                View Pricing <ArrowRight className="h-4 w-4" />
               </Link>
               <Link to="/services/google" className="inline-flex items-center gap-2 rounded-full border border-gold/40 px-6 py-3 text-sm font-semibold text-gold hover:bg-gold/10 transition">
                 Google Review Removal
