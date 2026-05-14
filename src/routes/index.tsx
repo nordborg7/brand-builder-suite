@@ -88,9 +88,9 @@ function HomePage() {
               ))}
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/contact" className="inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-gold-foreground hover:opacity-90 transition shadow-[0_10px_40px_-10px_var(--gold)]">
-                Monthly Plans <ArrowRight className="h-4 w-4" />
-              </Link>
+              <a href="#pricing" className="inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-gold-foreground hover:opacity-90 transition shadow-[0_10px_40px_-10px_var(--gold)]">
+                View Pricing <ArrowRight className="h-4 w-4" />
+              </a>
               <Link to="/services/google" className="inline-flex items-center gap-2 rounded-full border border-gold/40 px-6 py-3 text-sm font-semibold text-gold hover:bg-gold/10 transition">
                 Google Review Removal
               </Link>
@@ -205,7 +205,7 @@ function HomePage() {
       </section>
 
       {/* MONTHLY PLANS */}
-      <section className="px-4 md:px-6 py-20 bg-surface/40 border-y border-border">
+      <section id="pricing" className="px-4 md:px-6 py-20 bg-surface/40 border-y border-border">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-2xl mx-auto">
             <span className="text-xs font-semibold uppercase tracking-widest text-gold">Monthly Protection Plans</span>
