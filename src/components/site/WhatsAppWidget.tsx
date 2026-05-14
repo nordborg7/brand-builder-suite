@@ -6,13 +6,13 @@ export function WhatsAppWidget() {
       rel="noopener noreferrer"
       title="Chat on WhatsApp"
       aria-label="Chat on WhatsApp"
-      className="fixed bottom-5 right-5 z-50 flex h-[62px] w-[62px] items-center justify-center rounded-full bg-[#25D366] shadow-lg transition-transform hover:scale-110"
+      className="fixed bottom-5 right-5 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] shadow-lg transition-transform hover:scale-110"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 32 32"
-        width="36"
-        height="36"
+        width="28"
+        height="28"
         fill="white"
         aria-hidden="true"
       >
