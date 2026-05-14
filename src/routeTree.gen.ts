@@ -9,135 +9,38 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as WhyUsRouteImport } from './routes/why-us'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as CaseStudiesRouteImport } from './routes/case-studies'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 
-const WhyUsRoute = WhyUsRouteImport.update({
-  id: '/why-us',
-  path: '/why-us',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CaseStudiesRoute = CaseStudiesRouteImport.update({
-  id: '/case-studies',
-  path: '/case-studies',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServicesSlugRoute = ServicesSlugRouteImport.update({
-  id: '/services/$slug',
-  path: '/services/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/case-studies': typeof CaseStudiesRoute
-  '/contact': typeof ContactRoute
-  '/why-us': typeof WhyUsRoute
-  '/services/$slug': typeof ServicesSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/case-studies': typeof CaseStudiesRoute
-  '/contact': typeof ContactRoute
-  '/why-us': typeof WhyUsRoute
-  '/services/$slug': typeof ServicesSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/case-studies': typeof CaseStudiesRoute
-  '/contact': typeof ContactRoute
-  '/why-us': typeof WhyUsRoute
-  '/services/$slug': typeof ServicesSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/about'
-    | '/case-studies'
-    | '/contact'
-    | '/why-us'
-    | '/services/$slug'
+  fullPaths: '/'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/about'
-    | '/case-studies'
-    | '/contact'
-    | '/why-us'
-    | '/services/$slug'
-  id:
-    | '__root__'
-    | '/'
-    | '/about'
-    | '/case-studies'
-    | '/contact'
-    | '/why-us'
-    | '/services/$slug'
+  to: '/'
+  id: '__root__' | '/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
-  CaseStudiesRoute: typeof CaseStudiesRoute
-  ContactRoute: typeof ContactRoute
-  WhyUsRoute: typeof WhyUsRoute
-  ServicesSlugRoute: typeof ServicesSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/why-us': {
-      id: '/why-us'
-      path: '/why-us'
-      fullPath: '/why-us'
-      preLoaderRoute: typeof WhyUsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/case-studies': {
-      id: '/case-studies'
-      path: '/case-studies'
-      fullPath: '/case-studies'
-      preLoaderRoute: typeof CaseStudiesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -145,23 +48,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services/$slug': {
-      id: '/services/$slug'
-      path: '/services/$slug'
-      fullPath: '/services/$slug'
-      preLoaderRoute: typeof ServicesSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
-  CaseStudiesRoute: CaseStudiesRoute,
-  ContactRoute: ContactRoute,
-  WhyUsRoute: WhyUsRoute,
-  ServicesSlugRoute: ServicesSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

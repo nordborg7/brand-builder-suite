@@ -1,8 +1,9 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import {
-  ShieldCheck, Lock, CheckCircle2, DollarSign, ArrowRight, Star,
-  Award, Clock, TrendingUp, Scale, EyeOff, Zap,
+  ShieldCheck, CheckCircle2, DollarSign, ArrowRight, Star,
+  Award, Clock, TrendingUp, Scale, EyeOff, Zap, Mail, Phone,
 } from "lucide-react";
 import { brand } from "@/config/brand";
 
@@ -59,7 +60,15 @@ const testimonials = [
   { initial: "M", name: "Marc T.", role: "Restaurant Owner, Dubai", quote: "After a competitor planted fake reviews, our 4.8-star rating was recovered within two weeks." },
 ];
 
+const cases = [
+  { industry: "Healthcare", initial: "L", name: "Dr. Laurent M.", role: "Clinic Director, Toronto", result: "3 defamatory Google reviews removed in 6 days", quote: "Their team handled everything discreetly. Our clinic's reputation is fully restored." },
+  { industry: "Hospitality", initial: "S", name: "Sophie R.", role: "Hotel General Manager, London", result: "Recovered 4.7-star average after coordinated attack", quote: "Professional, discreet, and effective. They handled our case when no one else could." },
+  { industry: "Restaurant", initial: "M", name: "Marc T.", role: "Restaurant Owner, Dubai", result: "12 fake competitor reviews removed in 2 weeks", quote: "Our 4.8-star rating was recovered within two weeks. Worth every euro." },
+  { industry: "Luxury Retail", initial: "A", name: "Sophia M.", role: "Boutique Owner, Maldives", result: "Best investment we made for our reputation", quote: "Clear, honest communication throughout. Results delivered exactly as promised." },
+];
+
 function HomePage() {
+  const [sent, setSent] = useState(false);
   return (
     <div className="overflow-hidden">
       {/* HERO */}
@@ -91,13 +100,12 @@ function HomePage() {
               <a href="#pricing" className="inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-gold-foreground hover:opacity-90 transition shadow-[0_10px_40px_-10px_var(--gold)]">
                 View Pricing <ArrowRight className="h-4 w-4" />
               </a>
-              <Link to="/services/google" className="inline-flex items-center gap-2 rounded-full border border-gold/40 px-6 py-3 text-sm font-semibold text-gold hover:bg-gold/10 transition">
-                Google Review Removal
-              </Link>
+              <a href="#services" className="inline-flex items-center gap-2 rounded-full border border-gold/40 px-6 py-3 text-sm font-semibold text-gold hover:bg-gold/10 transition">
+                Our Services
+              </a>
             </div>
           </motion.div>
 
-          {/* Stat card */}
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.15 }}
             className="rounded-2xl border border-border bg-surface/60 backdrop-blur-sm p-5 md:p-6">
             <div className="grid grid-cols-2 gap-4">
@@ -149,9 +157,9 @@ function HomePage() {
                 </li>
               ))}
             </ul>
-            <Link to="/services/google" className="mt-8 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-gold-foreground">
-              Learn more about Google removal <ArrowRight className="h-4 w-4" />
-            </Link>
+            <a href="#contact" className="mt-8 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-gold-foreground">
+              Request Google review removal <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
           <div className="grid grid-cols-2 gap-4">
             {[
@@ -194,7 +202,7 @@ function HomePage() {
                     <li key={i} className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-gold mt-0.5 shrink-0" />{i}</li>
                   ))}
                 </ul>
-                <Link to="/contact" className="mt-7 inline-flex w-full justify-center rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-gold-foreground">Request Price</Link>
+                <a href="#contact" className="mt-7 inline-flex w-full justify-center rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-gold-foreground">Request Price</a>
               </div>
             ))}
           </div>
@@ -230,7 +238,7 @@ function HomePage() {
                   <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 text-gold shrink-0" />{p.note}</li>
                   <li className="text-muted-foreground">+ Monthly reputation report: +€15</li>
                 </ul>
-                <Link to="/contact" className="mt-5 inline-flex justify-center rounded-full border border-gold/40 px-4 py-2 text-xs font-semibold text-gold hover:bg-gold/10">Subscribe</Link>
+                <a href="#contact" className="mt-5 inline-flex justify-center rounded-full border border-gold/40 px-4 py-2 text-xs font-semibold text-gold hover:bg-gold/10">Subscribe</a>
               </div>
             ))}
           </div>
@@ -259,7 +267,7 @@ function HomePage() {
       </section>
 
       {/* ALL SERVICES */}
-      <section className="px-4 md:px-6 py-20 bg-surface/40 border-y border-border">
+      <section id="services" className="px-4 md:px-6 py-20 bg-surface/40 border-y border-border">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-2xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold">All review removal services</h2>
@@ -267,21 +275,21 @@ function HomePage() {
           </div>
           <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {platforms.map((p) => (
-              <Link key={p.slug} to="/services/$slug" params={{ slug: p.slug }}
-                className={`group rounded-2xl border p-6 transition hover:-translate-y-1 ${p.featured ? "border-gold bg-surface ring-1 ring-gold/30" : "border-border bg-surface hover:border-gold/40"}`}>
+              <div key={p.slug}
+                className={`group rounded-2xl border p-6 transition ${p.featured ? "border-gold bg-surface ring-1 ring-gold/30" : "border-border bg-surface"}`}>
                 {p.featured && <span className="inline-block mb-3 rounded-full bg-gold/20 text-gold px-2 py-1 text-[10px] font-bold uppercase">Most Requested</span>}
                 <div className="h-12 w-12 rounded-xl bg-gold/15 text-gold flex items-center justify-center font-bold text-xl">{p.letter}</div>
                 <h3 className="mt-4 font-bold text-lg">{p.name}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{p.desc}</p>
-                <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-gold">Learn more <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition" /></span>
-              </Link>
+                <a href="#contact" className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-gold">Request removal <ArrowRight className="h-4 w-4" /></a>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* WHY US */}
-      <section className="px-4 md:px-6 py-20">
+      <section id="why-us" className="px-4 md:px-6 py-20">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-2xl mx-auto">
             <span className="text-xs font-semibold uppercase tracking-widest text-gold">Why Businesses Choose Us</span>
@@ -324,11 +332,51 @@ function HomePage() {
               </div>
             ))}
           </div>
-          <div className="mt-10 text-center">
-            <Link to="/case-studies" className="inline-flex items-center gap-2 text-sm font-semibold text-gold hover:underline">
-              View all case studies <ArrowRight className="h-4 w-4" />
-            </Link>
+        </div>
+      </section>
+
+      {/* CASE STUDIES */}
+      <section id="case-studies" className="px-4 md:px-6 py-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="text-xs font-semibold uppercase tracking-widest text-gold">Case Studies</span>
+            <h2 className="mt-3 text-3xl md:text-4xl font-bold">Real results, across industries</h2>
           </div>
+          <div className="mt-12 grid md:grid-cols-2 gap-6">
+            {cases.map((c) => (
+              <article key={c.name} className="rounded-2xl border border-border bg-surface p-6">
+                <span className="text-xs font-semibold uppercase tracking-widest text-gold">{c.industry}</span>
+                <h3 className="mt-3 text-xl font-bold">{c.result}</h3>
+                <div className="mt-3 flex gap-1 text-gold">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-gold" />)}</div>
+                <p className="mt-3 text-sm text-foreground/90">"{c.quote}"</p>
+                <div className="mt-5 flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full bg-gold/20 text-gold flex items-center justify-center font-semibold">{c.initial}</div>
+                  <div>
+                    <div className="text-sm font-semibold">{c.name}</div>
+                    <div className="text-xs text-muted-foreground">{c.role}</div>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ABOUT */}
+      <section id="about" className="px-4 md:px-6 py-20 bg-surface/40 border-y border-border">
+        <div className="max-w-3xl mx-auto">
+          <span className="text-xs font-semibold uppercase tracking-widest text-gold">About Us</span>
+          <h2 className="mt-3 text-3xl md:text-4xl font-bold">About {brand.name}</h2>
+          <p className="mt-6 text-lg text-muted-foreground">
+            {brand.name} is a specialist team of reputation experts, former platform policy specialists, and media law attorneys.
+            We focus exclusively on one thing: removing damaging reviews from the platforms that matter to your business.
+          </p>
+          <p className="mt-4 text-muted-foreground">
+            Over 8+ years we've removed more than 25,000 reviews for businesses across hospitality, healthcare, retail, and professional services — with a 100% success rate on Google.
+          </p>
+          <p className="mt-4 text-muted-foreground">
+            Our process is confidential, legally compliant, and outcome-based — you only pay after the review is gone.
+          </p>
         </div>
       </section>
 
@@ -339,9 +387,60 @@ function HomePage() {
           <h2 className="mt-4 text-3xl md:text-4xl font-bold">Ready to defend your reputation?</h2>
           <p className="mt-3 text-muted-foreground">Get a free case assessment from our experts. No commitment required — we'll tell you exactly what we can achieve.</p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link to="/contact" className="inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold text-gold-foreground shadow-[0_10px_40px_-10px_var(--gold)]">Request Free Assessment</Link>
+            <a href="#contact" className="inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold text-gold-foreground shadow-[0_10px_40px_-10px_var(--gold)]">Request Free Assessment</a>
             <a href={`tel:${brand.phone.replace(/\s/g, "")}`} className="inline-flex rounded-full border border-gold/40 px-6 py-3 text-sm font-semibold text-gold hover:bg-gold/10">Call Us Now</a>
           </div>
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact" className="px-4 md:px-6 py-20 bg-surface/40 border-t border-border">
+        <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-12">
+          <div>
+            <span className="text-xs font-semibold uppercase tracking-widest text-gold">Contact</span>
+            <h2 className="mt-3 text-4xl md:text-5xl font-bold">Free consultation</h2>
+            <p className="mt-4 text-muted-foreground">Tell us about your case. We respond within 24 hours with a clear assessment — no commitment.</p>
+            <div className="mt-8 space-y-4 text-sm">
+              <a href={`tel:${brand.phone.replace(/\s/g, "")}`} className="flex items-center gap-3 hover:text-gold">
+                <Phone className="h-5 w-5 text-gold" /> {brand.phone}
+              </a>
+              <a href={`mailto:${brand.email}`} className="flex items-center gap-3 hover:text-gold">
+                <Mail className="h-5 w-5 text-gold" /> {brand.email}
+              </a>
+            </div>
+          </div>
+          <form
+            onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+            className="rounded-2xl border border-border bg-surface p-6 space-y-4"
+          >
+            {sent ? (
+              <div className="text-center py-10">
+                <CheckCircle2 className="h-12 w-12 text-gold mx-auto" />
+                <h3 className="mt-4 text-xl font-bold">Request received</h3>
+                <p className="mt-2 text-sm text-muted-foreground">We'll be in touch within 24 hours.</p>
+              </div>
+            ) : (
+              <>
+                <div>
+                  <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Name</label>
+                  <input required className="mt-1 w-full rounded-lg bg-background border border-border px-3 py-2.5 text-sm focus:outline-none focus:border-gold" />
+                </div>
+                <div>
+                  <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Email</label>
+                  <input required type="email" className="mt-1 w-full rounded-lg bg-background border border-border px-3 py-2.5 text-sm focus:outline-none focus:border-gold" />
+                </div>
+                <div>
+                  <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Business</label>
+                  <input className="mt-1 w-full rounded-lg bg-background border border-border px-3 py-2.5 text-sm focus:outline-none focus:border-gold" />
+                </div>
+                <div>
+                  <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Tell us about the reviews</label>
+                  <textarea required rows={4} className="mt-1 w-full rounded-lg bg-background border border-border px-3 py-2.5 text-sm focus:outline-none focus:border-gold" />
+                </div>
+                <button type="submit" className="w-full rounded-full bg-gold px-5 py-3 text-sm font-semibold text-gold-foreground">Request Free Assessment</button>
+              </>
+            )}
+          </form>
         </div>
       </section>
     </div>

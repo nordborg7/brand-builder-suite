@@ -1,22 +1,20 @@
-import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X, Phone, Mail, Star } from "lucide-react";
 import { Logo } from "./Logo";
 import { brand } from "@/config/brand";
 
 const nav = [
-  { to: "/services/google", label: "Services" },
-  { to: "/why-us", label: "Why Us" },
-  { to: "/case-studies", label: "Case Studies" },
-  { to: "/about", label: "About" },
-  { to: "/contact", label: "Contact" },
+  { href: "#services", label: "Services" },
+  { href: "#why-us", label: "Why Us" },
+  { href: "#case-studies", label: "Case Studies" },
+  { href: "#about", label: "About" },
+  { href: "#contact", label: "Contact" },
 ] as const;
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-border">
-      {/* Top bar */}
       <div className="hidden md:flex items-center justify-between px-6 py-2 text-xs text-muted-foreground border-b border-border/60">
         <div className="flex items-center gap-5">
           <a href={`tel:${brand.phone.replace(/\s/g, "")}`} className="flex items-center gap-2 hover:text-gold transition">
@@ -33,31 +31,22 @@ export function SiteHeader() {
       </div>
 
       <div className="flex items-center justify-between px-4 md:px-6 py-3">
-        <Logo />
+        <a href="#top"><Logo /></a>
         <nav className="hidden lg:flex items-center gap-8">
           {nav.map((item) => (
-            <Link
-              key={item.to}
-              to={item.to}
-              className="text-sm font-medium text-foreground/80 hover:text-gold transition"
-              activeProps={{ className: "text-gold" }}
-            >
+            <a key={item.href} href={item.href} className="text-sm font-medium text-foreground/80 hover:text-gold transition">
               {item.label}
-            </Link>
+            </a>
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <Link
-            to="/contact"
+          <a
+            href="#contact"
             className="hidden sm:inline-flex items-center rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-gold-foreground hover:opacity-90 transition shadow-[0_8px_30px_-12px_var(--gold)]"
           >
             Free Consultation
-          </Link>
-          <button
-            className="lg:hidden p-2 text-foreground"
-            onClick={() => setOpen((v) => !v)}
-            aria-label="Toggle menu"
-          >
+          </a>
+          <button className="lg:hidden p-2 text-foreground" onClick={() => setOpen((v) => !v)} aria-label="Toggle menu">
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
@@ -66,22 +55,13 @@ export function SiteHeader() {
       {open && (
         <div className="lg:hidden border-t border-border px-4 py-4 flex flex-col gap-3 bg-surface">
           {nav.map((item) => (
-            <Link
-              key={item.to}
-              to={item.to}
-              onClick={() => setOpen(false)}
-              className="text-sm font-medium text-foreground/90 hover:text-gold"
-            >
+            <a key={item.href} href={item.href} onClick={() => setOpen(false)} className="text-sm font-medium text-foreground/90 hover:text-gold">
               {item.label}
-            </Link>
+            </a>
           ))}
-          <Link
-            to="/contact"
-            onClick={() => setOpen(false)}
-            className="mt-2 inline-flex justify-center rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-gold-foreground"
-          >
+          <a href="#contact" onClick={() => setOpen(false)} className="mt-2 inline-flex justify-center rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-gold-foreground">
             Free Consultation
-          </Link>
+          </a>
         </div>
       )}
     </header>
