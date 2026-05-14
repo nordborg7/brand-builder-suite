@@ -12,6 +12,7 @@ import appCss from "../styles.css?url";
 import { brand } from "@/config/brand";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
+import { WhatsAppWidget } from "@/components/site/WhatsAppWidget";
 
 function NotFoundComponent() {
   return (
@@ -91,6 +92,7 @@ function RootComponent() {
       <SiteHeader />
       <main className="min-h-[60vh]"><Outlet /></main>
       <SiteFooter />
+      <WhatsAppWidget />
     </QueryClientProvider>
   );
 }
