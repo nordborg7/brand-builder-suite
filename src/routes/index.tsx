@@ -205,7 +205,7 @@ function HomePage() {
       </section>
 
       {/* MONTHLY PLANS */}
-      <section className="px-4 md:px-6 py-20 bg-surface/40 border-y border-border">
+      <section id="pricing" className="px-4 md:px-6 py-20 bg-surface/40 border-y border-border">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-2xl mx-auto">
             <span className="text-xs font-semibold uppercase tracking-widest text-gold">Monthly Protection Plans</span>
